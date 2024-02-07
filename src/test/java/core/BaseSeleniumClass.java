@@ -24,11 +24,18 @@ abstract public class BaseSeleniumClass {
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        //BaseSeleniumPage.setDriver(driver);
+        BaseSeleniumPage.setDriver(driver);
     }
 
     @AfterEach
     public void tearDown() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            driver.quit();
+        }
+
         driver.close();
         driver.quit();
     }
