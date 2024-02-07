@@ -19,6 +19,9 @@ public class StartPage extends BaseSeleniumPage {
     @FindBy(xpath = "//*[contains(text(), 'Private')]//ancestor::wb-radio-control")
     private WebElement privatePurpose;
 
+    @FindBy(xpath = "//button//*[contains(text(), 'Continue')]")
+    private WebElement continueButton;
+
 
 
     public StartPage() {
@@ -45,4 +48,8 @@ public class StartPage extends BaseSeleniumPage {
         return this;
     }
 
+    public AvailableVehiclesPage clickOnContinueButton() {
+        continueButton.click();
+        return new AvailableVehiclesPage();
+    }
 }

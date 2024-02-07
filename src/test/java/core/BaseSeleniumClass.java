@@ -13,7 +13,6 @@ abstract public class BaseSeleniumClass {
 
     @BeforeEach
     public void setupDriver() {
-        //WebDriverManager.chromedriver().setup();
         System.setProperty("webdriver.chrome.driver", "test_utils/drivers/chromedriver");
 
         ChromeOptions chromeOptions = new ChromeOptions();
