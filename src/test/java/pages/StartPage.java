@@ -5,6 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
+import static org.openqa.selenium.By.xpath;
+
 public class StartPage extends BaseSeleniumPage {
 
     @FindBy(xpath = "//*[contains(text(), 'Your state')]//ancestor::wb-select")
@@ -22,7 +26,8 @@ public class StartPage extends BaseSeleniumPage {
     @FindBy(xpath = "//button//*[contains(text(), 'Continue')]")
     private WebElement continueButton;
 
-
+    @FindBy(xpath = "//wb-control-error[text() = ' Please enter a valid Postal Code. ']")
+    private WebElement postCodeError;
 
     public StartPage() {
         driver.get("https://shop.mercedes-benz.com/en-au/shop/vehicle/srp/demo?sort=relevance-demo&assortment=vehicle");
@@ -40,10 +45,11 @@ public class StartPage extends BaseSeleniumPage {
     }
     public StartPage inputPostCode(String postCode) {
         postalCodeInput.sendKeys(postCode);
+        checkPostCodeIsEnteredCorrect();
         return this;
-    }public
+    }
 
-    StartPage choosePrivatePurpose() {
+    public StartPage choosePrivatePurpose() {
         privatePurpose.click();
         return this;
     }
@@ -51,5 +57,14 @@ public class StartPage extends BaseSeleniumPage {
     public AvailableVehiclesPage clickOnContinueButton() {
         continueButton.click();
         return new AvailableVehiclesPage();
+    }
+
+    public void checkPostCodeIsEnteredCorrect() {
+        List<WebElement> elements = driver.findElements(xpath("//wb-control-error[text() = ' Please enter a valid Postal Code. ']"));
+
+        if (!elements.isEmpty()) {
+            postalCodeInput.clear();
+            postalCodeInput.sendKeys("2007");
+        }
     }
 }

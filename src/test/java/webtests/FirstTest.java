@@ -25,7 +25,7 @@ public class FirstTest extends BaseSeleniumClass {
                 .clickOnPreOwnedTab()
                 .clickOnColourFilter()
                 .clickOnColourDropdown()
-                .clickOnBlueColour()
+                .clickOnColour()
                 .clickOnSorting()
                 .clickOnPriceDescOption()
                 .clickOnFirstCarCard();
@@ -34,7 +34,7 @@ public class FirstTest extends BaseSeleniumClass {
         String carData = carParameters.getWin() + "\n" + carParameters.getModelYear();
         carParameters.saveDataToFile(carData);
 
-        carParameters.clickOnOrderNowButton();
+        carParameters.clickOnEnquireNowButton();
     }
 
 }

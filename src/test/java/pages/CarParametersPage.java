@@ -1,8 +1,6 @@
 package pages;
 
 import core.BaseSeleniumPage;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -21,8 +19,8 @@ public class CarParametersPage extends BaseSeleniumPage {
             "//*[contains(@class, 'dcp-vehicle-details-list-item__value')]")
     private WebElement modelYearParameter;
 
-    @FindBy(xpath = "//*[text() = ' Order Online Now ']")
-    private WebElement toOrderButton;
+    @FindBy(xpath = "//*[text() = ' Enquire Now ']")
+    private WebElement enquireButton;
 
 
     public CarParametersPage() {
@@ -39,13 +37,13 @@ public class CarParametersPage extends BaseSeleniumPage {
         return year;
     }
 
-    public CarParametersPage clickOnOrderNowButton() {
-        toOrderButton.click();
+    public CarParametersPage clickOnEnquireNowButton() {
+        enquireButton.click();
         return this;
     }
 
     public static void saveDataToFile(String data) {
-        String filePath = "/Downloads/data.txt";
+        String filePath = "/Users/viktoriiasarycheva/Desctop/data.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(data);

@@ -6,12 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import static java.time.Duration.ofSeconds;
+import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class AvailableVehiclesPage extends BaseSeleniumPage {
+
+    @FindBy(xpath = "//*[contains(@class, 'dcp-loading-spinner')]")
+    private WebElement loaderSpinner;
 
     @FindBy(xpath = "//*[contains(@class, 'show')]")
     private WebElement filterButton;
@@ -28,7 +32,10 @@ public class AvailableVehiclesPage extends BaseSeleniumPage {
 
     @FindBy(xpath = "//*[contains(text(), ' BRILLANTBLUE metallic ')]" +
             "//ancestor::*[contains(@class, 'dcp-filter-pill')]")
-    private WebElement blueColour;
+    private WebElement colour;
+
+    @FindBy(xpath = "//button[text() = ' Show more vehicles ']")
+    private WebElement showMoreButton;
 
     @FindBy(xpath = "//*[contains(text(), 'Sorting')]//ancestor::wb-select")
     private WebElement sortingDropdown;
@@ -50,6 +57,8 @@ public class AvailableVehiclesPage extends BaseSeleniumPage {
 
     public AvailableVehiclesPage clickOnPreOwnedTab() {
         preOwnedTab.click();
+        waitForElementToDisappear(driver, loaderSpinner);
+        waitForElementDisplayed(driver, colourFilter);
         return this;
     }
 
@@ -65,9 +74,9 @@ public class AvailableVehiclesPage extends BaseSeleniumPage {
         return this;
     }
 
-    public AvailableVehiclesPage clickOnBlueColour() {
-        scrollToElement(driver, blueColour);
-        blueColour.click();
+    public AvailableVehiclesPage clickOnColour() {
+        scrollToElement(driver, showMoreButton);
+        colour.click();
         return this;
     }
 
@@ -86,19 +95,18 @@ public class AvailableVehiclesPage extends BaseSeleniumPage {
         return new CarParametersPage();
     }
 
+    public static void waitForElementToDisappear(WebDriver driver, WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, ofSeconds(10));
+        wait.until(invisibilityOf(element));
+    }
+
+    public static void waitForElementDisplayed(WebDriver driver, WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, ofSeconds(10));
+        wait.until(visibilityOf(element));
+    }
+
     public static void scrollToElement(WebDriver driver, WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", element);
-    }
-
-    public static void saveDataToFile(String data) {
-        String filePath = "/Downloads/data.txt";
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write(data);
-            System.out.println("Data saved to file: " + filePath);
-        } catch (IOException e) {
-            System.err.println("Failed to save data to file: " + e.getMessage());
-        }
     }
 }
