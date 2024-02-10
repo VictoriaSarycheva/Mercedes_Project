@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
+import static Constants.ProjectConstants.BRILLANTBLUE_METALLIC;
 import static Constants.ProjectConstants.FALSE_RESULT;
 import static java.lang.String.format;
 import static org.openqa.selenium.By.xpath;
@@ -108,6 +109,13 @@ public class AvailableVehiclesPage extends BaseSeleniumPage {
     public AvailableVehiclesPage checkAmountOfVehicleCards(int amount) {
         Integer amountOfCars = carCards.size();
         assert amountOfCars.equals(amount) : format(FALSE_RESULT, amount, amountOfCars);
+        return this;
+    }
+
+    public AvailableVehiclesPage openColorFilterAndChooseColor(String color) {
+        clickOnColourFilter();
+        clickOnColourDropdown();
+        clickOnColour(color);
         return this;
     }
 }

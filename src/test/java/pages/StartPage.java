@@ -51,7 +51,7 @@ public class StartPage extends BaseSeleniumPage {
         return this;
     }
 
-    public StartPage inputPostCode(String postCode) {
+    public StartPage inputPostalCode(String postCode) {
         postalCodeInput.click();
         postalCodeInput.sendKeys(postCode);
         driver.manage().timeouts().scriptTimeout(ofSeconds(3));
@@ -77,6 +77,15 @@ public class StartPage extends BaseSeleniumPage {
 
     public AvailableVehiclesPage clickOnContinueButton() {
         continueButton.click();
+        return new AvailableVehiclesPage();
+    }
+
+    public AvailableVehiclesPage fillLocationData(String state, String postalCode) {
+        clickOnYourStateDropdown();
+        chooseStateOptionFromList(state);
+        inputPostalCode(postalCode);
+        choosePrivatePurpose();
+        clickOnContinueButton();
         return new AvailableVehiclesPage();
     }
 }

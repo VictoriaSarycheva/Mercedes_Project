@@ -24,14 +24,14 @@ public class ChoosingLocationPopupTest extends BaseSeleniumClass {
     @Test
     public void checkErrorStateForIncorrectPostalCode() {
         startPage
-                .inputPostCode(INCORRECT_POST_CODE)
+                .inputPostalCode(INCORRECT_POST_CODE)
                 .checkErrorMessageIsDisplayedAndContainsText(INCORRECT_POSTAL_CODE_ERROR);
     }
 
     @Test
     public void checkPostalCodeIsRemovedAfterChangingState() {
         startPage
-                .inputPostCode(WALES_POST_CODE)
+                .inputPostalCode(WALES_POST_CODE)
                 .chooseStateOptionFromList(VICTORIA_STATE)
                 .checkPostalCodeIsEmpty();
     }

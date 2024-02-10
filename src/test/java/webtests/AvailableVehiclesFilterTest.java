@@ -4,8 +4,7 @@ import core.BaseSeleniumClass;
 import org.junit.jupiter.api.Test;
 import pages.StartPage;
 
-import static Constants.ProjectConstants.BRILLANTBLUE_METALLIC;
-import static Constants.ProjectConstants.NEW_SOUTH_WALES_STATE;
+import static Constants.ProjectConstants.*;
 
 public class AvailableVehiclesFilterTest extends BaseSeleniumClass {
 
@@ -13,16 +12,10 @@ public class AvailableVehiclesFilterTest extends BaseSeleniumClass {
     public void checkErrorStateForIncorrectEmail() {
         StartPage startPage = new StartPage();
         startPage
-                .clickOnYourStateDropdown()
-                .chooseStateOptionFromList(NEW_SOUTH_WALES_STATE)
-                .inputPostCode("2007")
-                .choosePrivatePurpose()
-                .clickOnContinueButton()
+                .fillLocationData(NEW_SOUTH_WALES_STATE, WALES_POST_CODE)
                 .clickOnFilterButton()
                 .clickOnPreOwnedTab()
-                .clickOnColourFilter()
-                .clickOnColourDropdown()
-                .clickOnColour(BRILLANTBLUE_METALLIC)
+                .openColorFilterAndChooseColor(BRILLANTBLUE_METALLIC)
                 .checkAmountOfVehicleCards(1);
     }
 }

@@ -13,16 +13,10 @@ public class ContactCardTest extends BaseSeleniumClass {
     public void checkErrorStateForIncorrectEmail() {
         StartPage startPage = new StartPage();
         startPage
-                .clickOnYourStateDropdown()
-                .chooseStateOptionFromList(NEW_SOUTH_WALES_STATE)
-                .inputPostCode(WALES_POST_CODE)
-                .choosePrivatePurpose()
-                .clickOnContinueButton()
+                .fillLocationData(NEW_SOUTH_WALES_STATE, WALES_POST_CODE)
                 .clickOnFilterButton()
                 .clickOnPreOwnedTab()
-                .clickOnColourFilter()
-                .clickOnColourDropdown()
-                .clickOnColour(BRILLANTBLUE_METALLIC)
+                .openColorFilterAndChooseColor(BRILLANTBLUE_METALLIC)
                 .clickOnSorting()
                 .clickOnPriceDescOption()
                 .clickOnFirstCarCard();
@@ -36,5 +30,4 @@ public class ContactCardTest extends BaseSeleniumClass {
                 .fillContactForm("First", "Last", "fake.com", "0441234567", WALES_POST_CODE)
                 .checkErrorStateIsDisplayed(INCORRECT_EMAIL_ERROR);
     }
-
 }
