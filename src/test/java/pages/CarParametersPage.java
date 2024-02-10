@@ -9,6 +9,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import static Constants.ProjectConstants.SAVE_DOCUMENT_URL;
+
 public class CarParametersPage extends BaseSeleniumPage {
 
     @FindBy(xpath = "//*[contains(@data-test-id, 'dcp-vehicle-details-list-item-11')]" +
@@ -43,7 +45,7 @@ public class CarParametersPage extends BaseSeleniumPage {
     }
 
     public static void saveDataToFile(String data) {
-        String filePath = "/Users/viktoriiasarycheva/Documents/example.txt";
+        String filePath = SAVE_DOCUMENT_URL;
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(data);

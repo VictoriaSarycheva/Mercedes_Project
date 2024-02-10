@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static Constants.ProjectConstants.FALSE_RESULT;
+import static java.lang.String.format;
+
 public class ContactDetailsPage extends BaseSeleniumPage {
 
     @FindBy(xpath = "//*[text()=' First Name ']/following-sibling::input")
@@ -25,7 +28,7 @@ public class ContactDetailsPage extends BaseSeleniumPage {
     @FindBy(xpath = "//*[contains(@name, 'alert-circle')]")
     private WebElement alertCircle;
 
-    @FindBy(xpath = "//wb-control-error[text()=' Please enter a valid email address using a minimum of six characters.']")
+    @FindBy(xpath = "//wb-control-error")
     private WebElement errorMessage;
 
     public ContactDetailsPage() {
@@ -66,9 +69,11 @@ public class ContactDetailsPage extends BaseSeleniumPage {
         return this;
     }
 
-    public ContactDetailsPage checkErrorStateIsDisplayed() {
+    public ContactDetailsPage checkErrorStateIsDisplayed(String errorText) {
+        waitForElementDisplayed(errorMessage);
         alertCircle.isDisplayed();
-        errorMessage.isDisplayed();
+        String actualText = errorMessage.getText();
+        assert actualText.equals(errorText) : format(FALSE_RESULT, errorText, actualText);
         return this;
     }
 }
