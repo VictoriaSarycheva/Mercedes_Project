@@ -2,25 +2,20 @@ package webtests;
 
 import core.BaseSeleniumClass;
 import org.junit.jupiter.api.Test;
-import pages.AvailableVehiclesPage;
 import pages.CarParametersPage;
 import pages.StartPage;
 
 public class FirstTest extends BaseSeleniumClass {
 
-
     @Test
-    public void checkTicket() {
+    public void checkErrorStateForIncorrectEmail() {
         StartPage startPage = new StartPage();
         startPage
                 .clickOnYourStateDropdown()
                 .chooseStateOptionFromList()
                 .inputPostCode("2007")
                 .choosePrivatePurpose()
-                .clickOnContinueButton();
-
-        AvailableVehiclesPage vehiclesPage = new AvailableVehiclesPage();
-        vehiclesPage
+                .clickOnContinueButton()
                 .clickOnFilterButton()
                 .clickOnPreOwnedTab()
                 .clickOnColourFilter()
@@ -34,7 +29,10 @@ public class FirstTest extends BaseSeleniumClass {
         String carData = carParameters.getWin() + "\n" + carParameters.getModelYear();
         carParameters.saveDataToFile(carData);
 
-        carParameters.clickOnEnquireNowButton();
+        carParameters
+                .clickOnEnquireNowButton()
+                .fillContactForm("First", "Last", "fake.com", "+441123456789", "2007")
+                .checkErrorStateIsDisplayed();
     }
 
 }

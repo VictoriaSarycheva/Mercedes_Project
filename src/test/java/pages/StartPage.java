@@ -5,9 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-
-import static org.openqa.selenium.By.xpath;
+import static java.time.Duration.ofSeconds;
 
 public class StartPage extends BaseSeleniumPage {
 
@@ -44,8 +42,9 @@ public class StartPage extends BaseSeleniumPage {
         return this;
     }
     public StartPage inputPostCode(String postCode) {
+        postalCodeInput.click();
         postalCodeInput.sendKeys(postCode);
-        checkPostCodeIsEnteredCorrect();
+        driver.manage().timeouts().scriptTimeout(ofSeconds(2));
         return this;
     }
 
@@ -57,14 +56,5 @@ public class StartPage extends BaseSeleniumPage {
     public AvailableVehiclesPage clickOnContinueButton() {
         continueButton.click();
         return new AvailableVehiclesPage();
-    }
-
-    public void checkPostCodeIsEnteredCorrect() {
-        List<WebElement> elements = driver.findElements(xpath("//wb-control-error[text() = ' Please enter a valid Postal Code. ']"));
-
-        if (!elements.isEmpty()) {
-            postalCodeInput.clear();
-            postalCodeInput.sendKeys("2007");
-        }
     }
 }

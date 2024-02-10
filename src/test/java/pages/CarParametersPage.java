@@ -19,7 +19,7 @@ public class CarParametersPage extends BaseSeleniumPage {
             "//*[contains(@class, 'dcp-vehicle-details-list-item__value')]")
     private WebElement modelYearParameter;
 
-    @FindBy(xpath = "//*[text() = ' Enquire Now ']")
+    @FindBy(xpath = "//button[text() = ' Enquire Now ']")
     private WebElement enquireButton;
 
 
@@ -37,13 +37,13 @@ public class CarParametersPage extends BaseSeleniumPage {
         return year;
     }
 
-    public CarParametersPage clickOnEnquireNowButton() {
+    public ContactDetailsPage clickOnEnquireNowButton() {
         enquireButton.click();
-        return this;
+        return new ContactDetailsPage();
     }
 
     public static void saveDataToFile(String data) {
-        String filePath = "/Users/viktoriiasarycheva/Desctop/data.txt";
+        String filePath = "/Users/viktoriiasarycheva/Documents/example.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(data);

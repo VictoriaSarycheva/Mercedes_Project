@@ -4,9 +4,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 
-import java.time.Duration;
+import static java.time.Duration.ofSeconds;
 
 abstract public class BaseSeleniumClass {
     protected WebDriver driver;
@@ -15,15 +17,24 @@ abstract public class BaseSeleniumClass {
     public void setupDriver() {
         System.setProperty("webdriver.chrome.driver", "test_utils/drivers/chromedriver");
 
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--disable-cookies");
-
-        driver = new ChromeDriver(chromeOptions);
-
+        String browserName = System.getenv().getOrDefault("BROWSER", "chrome");
+        driver = browserName.equalsIgnoreCase("firefox")
+                ? new FirefoxDriver()
+                : new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().pageLoadTimeout(ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(ofSeconds(10));
         BaseSeleniumPage.setDriver(driver);
+    }
+
+    private WebDriver turnoffFirefoxCookies() {
+        FirefoxOptions ops=new FirefoxOptions();
+        FirefoxProfile profile=new FirefoxProfile();
+        profile.setPreference("network.cookie.cookieBehavior", 2);
+        ops.setProfile(profile);
+
+        WebDriver driver = new FirefoxDriver(ops);
+        return driver;
     }
 
     @AfterEach
@@ -34,7 +45,6 @@ abstract public class BaseSeleniumClass {
             e.printStackTrace();
             driver.quit();
         }
-
         driver.close();
         driver.quit();
     }

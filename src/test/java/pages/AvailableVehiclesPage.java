@@ -1,5 +1,6 @@
 package pages;
 
+import ElementActionsHelper.ElementActionsSteps;
 import core.BaseSeleniumPage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -8,14 +9,18 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static ElementActionsHelper.ElementActionsSteps.*;
 import static java.time.Duration.ofSeconds;
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class AvailableVehiclesPage extends BaseSeleniumPage {
 
-    @FindBy(xpath = "//*[contains(@class, 'dcp-loading-spinner')]")
+    @FindBy(xpath = "//*[contains(@class, 'dcp-loader')]")
     private WebElement loaderSpinner;
+
+    @FindBy(xpath = "//*[contains(@class, 'dcp-header-location-text')]")
+    private WebElement locationTag;
 
     @FindBy(xpath = "//*[contains(@class, 'show')]")
     private WebElement filterButton;
@@ -81,6 +86,8 @@ public class AvailableVehiclesPage extends BaseSeleniumPage {
     }
 
     public AvailableVehiclesPage clickOnSorting() {
+        waitForElementToDisappear(driver, loaderSpinner);
+        scrollToElement(driver, locationTag);
         sortingDropdown.click();
         return this;
     }
@@ -91,22 +98,8 @@ public class AvailableVehiclesPage extends BaseSeleniumPage {
     }
 
     public CarParametersPage clickOnFirstCarCard() {
+        waitForElementToDisappear(driver, loaderSpinner);
         firstCarCard.click();
         return new CarParametersPage();
-    }
-
-    public static void waitForElementToDisappear(WebDriver driver, WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, ofSeconds(10));
-        wait.until(invisibilityOf(element));
-    }
-
-    public static void waitForElementDisplayed(WebDriver driver, WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, ofSeconds(10));
-        wait.until(visibilityOf(element));
-    }
-
-    public static void scrollToElement(WebDriver driver, WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 }
