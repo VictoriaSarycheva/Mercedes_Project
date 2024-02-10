@@ -54,7 +54,7 @@ public class StartPage extends BaseSeleniumPage {
     public StartPage inputPostCode(String postCode) {
         postalCodeInput.click();
         postalCodeInput.sendKeys(postCode);
-        driver.manage().timeouts().scriptTimeout(ofSeconds(2));
+        driver.manage().timeouts().scriptTimeout(ofSeconds(3));
         return this;
     }
 

@@ -24,7 +24,6 @@ public class CarParametersPage extends BaseSeleniumPage {
     @FindBy(xpath = "//button[text() = ' Enquire Now ']")
     private WebElement enquireButton;
 
-
     public CarParametersPage() {
         PageFactory.initElements(driver, this);
     }

@@ -55,6 +55,7 @@ public class AvailableVehiclesPage extends BaseSeleniumPage {
     }
 
     public AvailableVehiclesPage clickOnFilterButton() {
+        waitForElementDisplayed(filterButton);
         filterButton.click();
         return this;
     }

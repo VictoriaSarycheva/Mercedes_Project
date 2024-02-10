@@ -32,7 +32,7 @@ public class ChoosingLocationPopupTest extends BaseSeleniumClass {
     public void checkPostalCodeIsRemovedAfterChangingState() {
         startPage
                 .inputPostCode(WALES_POST_CODE)
-                .chooseStateOptionFromList(VICTORIA)
+                .chooseStateOptionFromList(VICTORIA_STATE)
                 .checkPostalCodeIsEmpty();
     }
 }
