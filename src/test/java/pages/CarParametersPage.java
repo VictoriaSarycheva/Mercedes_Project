@@ -9,7 +9,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static Constants.ProjectConstants.SAVE_DOCUMENT_URL;
+import static constants.ProjectConstants.SAVE_DOCUMENT_URL;
 
 public class CarParametersPage extends BaseSeleniumPage {
 

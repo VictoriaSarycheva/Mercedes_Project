@@ -4,7 +4,7 @@ import core.BaseSeleniumClass;
 import org.junit.jupiter.api.Test;
 import pages.StartPage;
 
-import static Constants.ProjectConstants.*;
+import static constants.ProjectConstants.*;
 
 public class AvailableVehiclesFilterTest extends BaseSeleniumClass {
 

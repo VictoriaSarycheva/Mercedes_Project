@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import pages.CarParametersPage;
 import pages.StartPage;
 
-import static Constants.ProjectConstants.*;
+import static constants.ProjectConstants.*;
 
 public class ContactCardTest extends BaseSeleniumClass {
 

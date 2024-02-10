@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.StartPage;
 
-import static Constants.ProjectConstants.*;
+import static constants.ProjectConstants.*;
 
 public class ChoosingLocationPopupTest extends BaseSeleniumClass {
 

@@ -5,8 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static Constants.ProjectConstants.FALSE_RESULT;
-import static Constants.ProjectConstants.START_PAGE_URL;
+import static constants.ProjectConstants.FALSE_RESULT;
+import static constants.ProjectConstants.START_PAGE_URL;
 import static java.lang.String.format;
 import static java.time.Duration.ofSeconds;
 import static org.openqa.selenium.By.xpath;

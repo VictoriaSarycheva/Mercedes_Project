@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static Constants.ProjectConstants.FALSE_RESULT;
+import static constants.ProjectConstants.FALSE_RESULT;
 import static java.lang.String.format;
 
 public class ContactDetailsPage extends BaseSeleniumPage {

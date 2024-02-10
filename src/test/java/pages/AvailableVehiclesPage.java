@@ -7,8 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-import static Constants.ProjectConstants.BRILLANTBLUE_METALLIC;
-import static Constants.ProjectConstants.FALSE_RESULT;
+import static constants.ProjectConstants.FALSE_RESULT;
 import static java.lang.String.format;
 import static org.openqa.selenium.By.xpath;
 
