@@ -3,6 +3,7 @@ package core;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static java.time.Duration.ofSeconds;
@@ -10,9 +11,10 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 abstract public class BaseSeleniumPage {
-    protected static WebDriver driver;
+    protected static RemoteWebDriver driver;
+    //protected static WebDriver driver;
 
-    public static void setDriver(WebDriver webDriver) {
+    public static void setDriver(RemoteWebDriver webDriver) {
         driver = webDriver;
     }
 
