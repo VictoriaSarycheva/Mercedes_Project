@@ -62,6 +62,6 @@ abstract public class BaseSeleniumClass {
             e.printStackTrace();
             driver.quit();
         }
-        driver.close();
+        //driver.close();
     }
 }
