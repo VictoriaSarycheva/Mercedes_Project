@@ -1,7 +1,7 @@
 package core;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -11,11 +11,12 @@ import java.net.URL;
 
 import static java.time.Duration.ofSeconds;
 
+@ExtendWith(TestListener.class)
 abstract public class BaseSeleniumClass {
     //protected WebDriver driver;
     protected RemoteWebDriver driver;
     protected String remote_url = System.getProperty("RemoteUrl");
-    protected String browserName = System.getProperty("browser");
+    public static String browserName = System.getProperty("browser");
     //protected String browserName = System.getenv().getOrDefault("BROWSER", "chrome");
 
     @BeforeEach
@@ -52,16 +53,5 @@ abstract public class BaseSeleniumClass {
             driver.manage().timeouts().implicitlyWait(ofSeconds(10));
             BaseSeleniumPage.setDriver(driver);
         }
-    }
-
-    @AfterEach
-    public void tearDown() {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            driver.quit();
-        }
-        //driver.close();
     }
 }
