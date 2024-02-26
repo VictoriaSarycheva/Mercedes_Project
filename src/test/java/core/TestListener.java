@@ -17,16 +17,16 @@ public class TestListener implements TestWatcher {
     @SneakyThrows
     @Override
     public void testFailed(ExtensionContext context, Throwable cause) {
-        /*Allure.getLifecycle().addAttachment("Fail screenshot", "image/png", "png",
-                ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));*/
+        Allure.getLifecycle().addAttachment("Fail screenshot", "image/png", "png",
+                ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
 
         if (browserName.contains("Chrome")) {
-            /*Allure.addAttachment("Fail logs: ",
-                    String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));*/
+            Allure.addAttachment("Fail logs: ",
+                    String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
             WebDriverManager.chromedriver().quit();
         } else {
-            /*Allure.getLifecycle().addAttachment("Fail screenshot", "image/png", "png",
-                    ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));*/
+            Allure.getLifecycle().addAttachment("Fail screenshot", "image/png", "png",
+                    ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
             WebDriverManager.firefoxdriver().quit();
         }
 
@@ -36,16 +36,16 @@ public class TestListener implements TestWatcher {
     @SneakyThrows
     @Override
     public void testSuccessful(ExtensionContext context) {
-        /*Allure.getLifecycle().addAttachment("Passed test screenshot", "image/png", "png",
-                ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));*/
+        Allure.getLifecycle().addAttachment("Passed test screenshot", "image/png", "png",
+                ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
 
         if (browserName.contains("Chrome")) {
-            /*Allure.addAttachment("Success logs: ",
-                    String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));*/
+            Allure.addAttachment("Success logs: ",
+                    String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
             WebDriverManager.chromedriver().quit();
         } else {
-            /*Allure.getLifecycle().addAttachment("Error screenshot", "image/png", "png",
-                    ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));*/
+            Allure.getLifecycle().addAttachment("Error screenshot", "image/png", "png",
+                    ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
             WebDriverManager.firefoxdriver().quit();
         }
 
